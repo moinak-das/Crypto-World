@@ -698,3 +698,25 @@ table td {
         font-size: 0.8rem;
     }
 }
+
+.footer-columns {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+}
+
+.footer-columns div {
+    flex: 1;
+}
+
+.social-icons a {
+    display: inline-block;
+    margin-right: 10px;
+    text-decoration: none;
+    color: var(--social-link);
+}
+
