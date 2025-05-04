@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto World</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+</head>
+<body class="dark-mode"> <header>
+        <div class="header-content">
+            <a href="#" id="logo-link"><h1>Crypto World</h1></a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link active" data-target="market-view">Market</a></li>
+                    <li><a href="#" class="nav-link" data-target="portfolio-view">Portfolio</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </nav>
+            <button id="theme-toggle-button">
+                ☀️ </button>
+             <button id="menu-toggle-button">☰</button> </div>
+    </header>
+
+    <main class="container">
+
+        <section id="market-view" class="view active-view">
+            <h2>Market Overview</h2>
+            <div class="controls">
+                <input type="text" id="search-input" placeholder="Search Cryptocurrency...">
+            </div>
+            <div id="loading-indicator">Loading market data...</div>
+            <div class="table-container">
+                <table id="crypto-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>24h %</th>
+                            <th>Market Cap</th>
+                            <th>Volume (24h)</th>
+                            <th>Action</th> </tr>
+                    </thead>
+                    <tbody id="crypto-data">
+                        </tbody>
+                </table>
+            </div>
+             <div class="api-attribution">
+                Data Source: Mock Data (Replace with Real API Attribution)
+            </div>
+        </section>
+
+        <section id="coin-detail-view" class="view">
+            <button class="back-button" data-target="market-view">&larr; Back to Market</button>
+            <h2 id="coin-detail-name">Coin Details</h2>
+            <div id="coin-detail-loading">Loading chart data...</div>
+            <div id="coin-detail-content">
+                <div class="chart-container">
+                    <canvas id="price-chart"></canvas>
+                </div>
+                <div id="coin-detail-stats">
+                    <p><strong>Symbol:</strong> <span id="detail-symbol">---</span></p>
+                     <p><strong>Current Price:</strong> <span id="detail-price">---</span></p>
+                     <p><strong>24h Change:</strong> <span id="detail-change">---</span></p>
+                     <p><strong>Market Cap:</strong> <span id="detail-marketcap">---</span></p>
+                     <p><strong>Volume (24h):</strong> <span id="detail-volume">---</span></p>
+                     </div>
+            </div>
+        </section>
+
+        <section id="portfolio-view" class="view">
+            <h2>My Portfolio</h2>
+             <div id="portfolio-summary">
+                 <h3>Summary</h3>
+                 <p><strong>Total Value:</strong> <span id="portfolio-total-value">$0.00</span></p>
+                 </div>
+
+             <div id="add-holding-form">
+                 <h3>Add New Holding</h3>
+                 <form id="holding-form">
+                     <select id="add-coin-select" required>
+                         <option value="" disabled selected>Select Coin</option>
+                         </select>
+                     <input type="number" id="add-quantity" placeholder="Quantity" required step="any" min="0">
+                     <input type="number" id="add-purchase-price" placeholder="Purchase Price (USD)" step="any" min="0">
+                     <button type="submit">Add Holding</button>
+                 </form>
+                 <p id="portfolio-message"></p>
+             </div>
+
+             <div id="portfolio-holdings">
+                 <h3>Current Holdings</h3>
+                 <div class="table-container">
+                     <table id="portfolio-table">
+                         <thead>
+                             <tr>
+                                 <th>Coin</th>
+                                 <th>Symbol</th>
+                                 <th>Quantity</th>
+                                 <th>Avg. Buy Price</th>
+                                 <th>Current Price</th>
+                                 <th>Current Value</th>
+                                 <th>Action</th>
+                             </tr>
+                         </thead>
+                         <tbody id="portfolio-data">
+                             </tbody>
+                     </table>
+                 </div>
+             </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Crypto Pro Tracker. All rights reserved.</p>
+    </footer>
+
+    <script src="portfolio.js"></script> <script src="chart-handler.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,700 @@
+/* --- Base Styles & Reset --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Theme Variables --- */
+:root {
+    --bg-primary-dark: #1a1a2e;
+    --bg-secondary-dark: #16213e;
+    --bg-tertiary-dark: #0f3460;
+    --text-primary-dark: #e0e0e0;
+    --text-secondary-dark: #a0a0a0;
+    --accent-color-dark: #e94560;
+    --border-color-dark: #2a2a4a;
+    --positive-color-dark: #3dd598;
+    --negative-color-dark: #ff4d4d;
+    --hover-bg-dark: #2a2a4a;
+    --button-bg-dark: #1f4068;
+    --button-text-dark: #ffffff;
+
+    --bg-primary-light: #f4f7fc;
+    --bg-secondary-light: #ffffff;
+    --bg-tertiary-light: #e3eafc;
+    --text-primary-light: #1c1c1c;
+    --text-secondary-light: #555555;
+    --accent-color-light: #4a69bb; /* Softer blue for light mode */
+    --border-color-light: #d1d9e6;
+    --positive-color-light: #28a745; /* Standard green */
+    --negative-color-light: #dc3545; /* Standard red */
+    --hover-bg-light: #e9ecef;
+    --button-bg-light: #4a69bb;
+    --button-text-light: #ffffff;
+
+    /* Default to dark mode variables */
+    --bg-primary: var(--bg-primary-dark);
+    --bg-secondary: var(--bg-secondary-dark);
+    --bg-tertiary: var(--bg-tertiary-dark);
+    --text-primary: var(--text-primary-dark);
+    --text-secondary: var(--text-secondary-dark);
+    --accent-color: var(--accent-color-dark);
+    --border-color: var(--border-color-dark);
+    --positive-color: var(--positive-color-dark);
+    --negative-color: var(--negative-color-dark);
+    --hover-bg: var(--hover-bg-dark);
+    --button-bg: var(--button-bg-dark);
+    --button-text: var(--button-text-dark);
+}
+
+/* --- Light Mode --- */
+body.light-mode {
+    --bg-primary: var(--bg-primary-light);
+    --bg-secondary: var(--bg-secondary-light);
+    --bg-tertiary: var(--bg-tertiary-light);
+    --text-primary: var(--text-primary-light);
+    --text-secondary: var(--text-secondary-light);
+    --accent-color: var(--accent-color-light);
+    --border-color: var(--border-color-light);
+    --positive-color: var(--positive-color-light);
+    --negative-color: var(--negative-color-light);
+    --hover-bg: var(--hover-bg-light);
+    --button-bg: var(--button-bg-light);
+    --button-text: var(--button-text-light);
+}
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: var(--bg-primary); /* Use CSS var */
+    color: var(--text-primary); /* Use CSS var */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: var(--bg-secondary); /* Use CSS var */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Softer shadow for both themes */
+    flex-grow: 1;
+    transition: background-color 0.3s ease;
+}
+
+/* --- Header & Navigation --- */
+header {
+    background-color: var(--bg-tertiary); /* Use CSS var */
+    color: var(--accent-color); /* Use CSS var */
+    padding: 0.8rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky; /* Make header sticky */
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.header-content {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--accent-color); /* Use CSS var */
+    transition: color 0.3s ease;
+}
+
+header a {
+    text-decoration: none;
+     color: var(--text-primary);
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem; /* Spacing between nav items */
+}
+
+header nav a {
+    color: var(--text-primary); /* Use CSS var */
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+header nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+header nav a:hover::after,
+header nav a.active::after {
+    width: 100%;
+}
+
+header nav a.active {
+    color: var(--accent-color); /* Highlight active link */
+}
+
+/* --- Theme Toggle Button --- */
+#theme-toggle-button {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.5rem; /* Make icon larger */
+    cursor: pointer;
+    padding: 0.3rem;
+    line-height: 1; /* Ensure icon aligns well */
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+#theme-toggle-button:hover {
+    transform: scale(1.1);
+}
+
+#menu-toggle-button {
+    display: none; /* Hidden by default */
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: auto;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- View Switching --- */
+.view {
+    display: none; /* Hide all views by default */
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.view.active-view {
+    display: block; /* Show only the active view */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* --- Controls & Buttons --- */
+.controls {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#search-input {
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    width: 100%;
+    max-width: 350px;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+#search-input::placeholder {
+    color: var(--text-secondary);
+}
+
+button, .button-style { /* Style common buttons */
+    padding: 0.6rem 1.2rem;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    text-align: center;
+}
+
+button:hover, .button-style:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+button:active, .button-style:active {
+     transform: translateY(0px);
+}
+
+.back-button {
+    margin-bottom: 1rem;
+    background-color: transparent;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    padding: 0.4rem 0.8rem;
+}
+.back-button:hover {
+     background-color: var(--accent-color);
+     color: var(--button-text);
+}
+
+/* --- Loading Indicators --- */
+#loading-indicator, #coin-detail-loading, #portfolio-loading { /* Style all loaders */
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    display: none; /* Hidden by default */
+}
+
+/* --- Table Styles (Reused & Enhanced) --- */
+.table-container {
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+     transition: border-color 0.3s ease;
+}
+
+table { /* Apply to all tables */
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0; /* Remove top margin as container has it */
+}
+
+table th,
+table td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+table tr:last-child td {
+    border-bottom: none; /* Remove border from last row */
+}
+
+table th {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary); /* Adjusted for better contrast in both themes */
+    font-weight: 700;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+table tbody tr:hover {
+    background-color: var(--hover-bg); /* Use CSS var */
+}
+
+table td {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+/* Align specific columns */
+#crypto-table th:nth-child(1), #crypto-table td:nth-child(1), /* # */
+#crypto-table th:nth-child(3), #crypto-table td:nth-child(3), /* Price */
+#crypto-table th:nth-child(4), #crypto-table td:nth-child(4), /* 24h % */
+#crypto-table th:nth-child(5), #crypto-table td:nth-child(5), /* Market Cap */
+#crypto-table th:nth-child(6), #crypto-table td:nth-child(6), /* Volume */
+#crypto-table th:nth-child(7), #crypto-table td:nth-child(7), /* Action */
+#portfolio-table th:nth-child(3), #portfolio-table td:nth-child(3), /* Qty */
+#portfolio-table th:nth-child(4), #portfolio-table td:nth-child(4), /* Buy Price */
+#portfolio-table th:nth-child(5), #portfolio-table td:nth-child(5), /* Current Price */
+#portfolio-table th:nth-child(6), #portfolio-table td:nth-child(6), /* Current Value */
+#portfolio-table th:nth-child(7), #portfolio-table td:nth-child(7) { /* Action */
+    text-align: right;
+}
+#portfolio-table th:nth-child(1), #portfolio-table td:nth-child(1), /* Coin */
+#portfolio-table th:nth-child(2), #portfolio-table td:nth-child(2) { /* Symbol */
+     text-align: left;
+}
+
+
+/* --- Data Styling (Positive/Negative) --- */
+.positive {
+    color: var(--positive-color);
+}
+
+.negative {
+    color: var(--negative-color);
+}
+
+.crypto-name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.crypto-symbol {
+    color: var(--text-secondary);
+    font-size: 0.8em;
+    text-transform: uppercase;
+}
+
+/* --- Coin Detail View Styles --- */
+#coin-detail-view h2 {
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+}
+
+#coin-detail-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Chart takes more space */
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.chart-container {
+    background-color: var(--bg-primary); /* Chart background */
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#coin-detail-stats {
+    background-color: var(--bg-primary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#coin-detail-stats p {
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+}
+
+#coin-detail-stats strong {
+    color: var(--text-secondary);
+    min-width: 120px; /* Align values */
+    display: inline-block;
+}
+#coin-detail-stats span {
+     color: var(--text-primary);
+}
+
+
+/* --- Portfolio View Styles --- */
+#portfolio-view h2, #portfolio-view h3 {
+     color: var(--accent-color);
+     margin-bottom: 1rem;
+}
+#portfolio-view h3 {
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+
+#portfolio-summary {
+    background-color: var(--bg-tertiary);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    transition: background-color 0.3s ease;
+}
+#portfolio-summary p {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+#portfolio-summary strong {
+    color: var(--text-secondary);
+}
+#portfolio-total-value {
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+
+#add-holding-form {
+    background-color: var(--bg-primary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#holding-form {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 1rem;
+    align-items: flex-end; /* Align button nicely */
+}
+
+#holding-form select,
+#holding-form input {
+    padding: 0.7rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    flex-grow: 1; /* Allow inputs to grow */
+    min-width: 150px; /* Minimum width */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+#holding-form button {
+    flex-grow: 0; /* Don't allow button to grow as much */
+}
+
+#portfolio-message {
+    margin-top: 1rem;
+    font-size: 0.9em;
+    min-height: 1.2em; /* Prevent layout shift */
+}
+#portfolio-message.success {
+    color: var(--positive-color);
+}
+#portfolio-message.error {
+     color: var(--negative-color);
+}
+
+
+/* --- Authentication Page Styles (`login.html`, `signup.html`) --- */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    padding: 2rem;
+}
+
+.auth-box {
+    background-color: var(--bg-secondary);
+    padding: 2rem 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+     transition: background-color 0.3s ease;
+}
+
+.auth-box h2 {
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    margin-bottom: 1.2rem;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: var(--text-secondary);
+    font-size: 0.9em;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.auth-button {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.auth-switch {
+    margin-top: 1.5rem;
+    font-size: 0.9em;
+    color: var(--text-secondary);
+}
+
+.auth-switch a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+.auth-switch a:hover {
+    text-decoration: underline;
+}
+.auth-box p a { /* Style for Back to Tracker link */
+     color: var(--text-secondary);
+     font-size: 0.9em;
+     text-decoration: none;
+}
+.auth-box p a:hover {
+    color: var(--accent-color);
+}
+
+
+/* --- Responsiveness --- */
+
+/* Medium Screens (Tablets) */
+@media (max-width: 992px) {
+    .container {
+        width: 95%;
+    }
+    table th,
+    table td {
+        padding: 0.7rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    #coin-detail-content {
+        grid-template-columns: 1fr; /* Stack chart and stats */
+    }
+    .header-content {
+        width: 95%;
+    }
+     header nav ul {
+        gap: 1rem;
+    }
+}
+
+/* Small Screens (Mobiles) */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.2rem;
+    }
+    .header-content {
+        position: relative; /* Needed for absolute positioning of nav */
+    }
+
+    header nav {
+        display: none; /* Hide nav by default */
+        position: absolute;
+        top: 100%; /* Position below header */
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-tertiary);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding: 1rem 0;
+        z-index: 999; /* Ensure it's above content */
+    }
+    header nav.active { /* Show nav when active */
+        display: block;
+    }
+
+    header nav ul {
+        flex-direction: column; /* Stack nav items */
+        align-items: center;
+        gap: 0;
+    }
+    header nav li {
+       width: 100%;
+       text-align: center;
+    }
+
+    header nav a {
+        display: block; /* Make links take full width */
+        padding: 0.8rem 1rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+     header nav li:last-child a {
+        border-bottom: none;
+    }
+    header nav a::after {
+       display: none; /* Hide underline effect on mobile nav */
+    }
+     header nav a.active {
+        background-color: var(--accent-color);
+        color: var(--button-text); /* Use button text color for contrast */
+    }
+
+    #menu-toggle-button {
+        display: block; /* Show burger menu */
+    }
+
+    #theme-toggle-button {
+        margin-left: auto; /* Push theme button right before burger */
+        margin-right: 1rem;
+    }
+
+
+    .container {
+        padding: 1rem;
+        width: 100%;
+        margin: 1rem 0;
+        border-radius: 0;
+    }
+    table th,
+    table td {
+        padding: 0.6rem 0.5rem;
+        font-size: 0.85rem;
+        white-space: nowrap; /* Keep for horizontal scroll */
+    }
+
+    .controls {
+      justify-content: center;
+    }
+    #search-input {
+        max-width: 100%;
+        width: 90%;
+        font-size: 0.9rem;
+    }
+     .crypto-symbol {
+       font-size: 0.7em;
+       margin-left: 0.3rem;
+    }
+
+     #holding-form {
+        flex-direction: column; /* Stack form elements */
+        align-items: stretch; /* Make inputs full width */
+     }
+     #holding-form select,
+     #holding-form input,
+     #holding-form button {
+         min-width: auto;
+     }
+
+     .auth-box {
+        padding: 1.5rem;
+     }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.1rem;
+    }
+     table th,
+    table td {
+        padding: 0.5rem 0.4rem;
+        font-size: 0.8rem;
+    }
+}
